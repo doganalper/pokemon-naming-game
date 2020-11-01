@@ -46,8 +46,11 @@ export default {
   src: local("Pokemon"), url(../public/fonts/Pokemon-Classic.ttf) format("truetype");
 }
 
-#app{
+*{
   font-family: "Pokemon";
+}
+
+#app{
   width: 100%;
   height: 948px;
   display: flex;
