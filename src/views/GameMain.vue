@@ -3,7 +3,7 @@
     <div class="playerInfoSect">
       <input type="text" v-model="userName" class="inputName" placeholder="Your name">
       <button class="startGameBtn" @click="startGame"> Start Game! </button>
-      <span v-if="error">
+      <span v-show="error">
         {{ errorMessage }}
       </span>
     </div>
@@ -21,8 +21,10 @@ export default {
   },
   methods: {
     startGame() {
-      if(this.userName !== '' || this.userName !== null) {
+      this.error = false;
+      if(this.userName !== '' && this.userName !== null) {
         this.$store.commit('START_GAME', this.userName);
+        this.$router.push('/game-start')
       } else {
         this.error = true;
       }
@@ -58,6 +60,7 @@ export default {
     height: 50px;
     border-radius: 15px;
     width: 210px;
+    margin-bottom: 10px;
     background-color: red;
     border: none;
     color: #fff;

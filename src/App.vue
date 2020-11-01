@@ -6,12 +6,11 @@
         backgroundAttachment: 'fixed', 
         backgroundPosition: 'center'}"
   >
-    <GameMain />
+    <router-view />
   </div>
 </template>
 
 <script>
-import GameMain from '@/views/GameMain';
 export default {
   data() {
     return {
@@ -25,17 +24,14 @@ export default {
       setImage: null,
     }
   },
-  components: {
-    GameMain,
-  },
   methods: {
     setBgImage() {
       this.setImage = this.bgBaseUrl + this.bgImages[Math.floor(Math.random() * this.bgImages.length)];
-      console.log(this.setImage);
     }
   },
   mounted() {
     this.setBgImage();
+    this.$store.commit('CLEAR_GAME');
   }
 }
 </script>

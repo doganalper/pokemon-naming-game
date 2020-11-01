@@ -1,9 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import GameMain from "@/views/GameMain.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/game-start",
+    component: () => import(`@/views/GameStart.vue`),
+    name: 'GameStart'
+  },
+  {
+    path: "/",
+    component: GameMain,
+    name: 'MainScreen'
+  }
 ];
 
 const router = new VueRouter({
