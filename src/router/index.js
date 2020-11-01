@@ -14,6 +14,11 @@ const routes = [
     path: "/",
     component: GameMain,
     name: 'MainScreen'
+  },
+  {
+    path: "*",
+    component: () => import(`@/views/NotFound.vue`),
+    name: 'NotFound'
   }
 ];
 
