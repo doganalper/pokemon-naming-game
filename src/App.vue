@@ -49,6 +49,9 @@ export default {
 #app{
   font-family: "Pokemon";
   width: 100%;
-  height: 100%;
+  height: 948px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
