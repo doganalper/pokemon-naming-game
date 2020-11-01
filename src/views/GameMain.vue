@@ -3,8 +3,8 @@
     <div class="playerInfoSect">
       <input type="text" v-model="userName" class="inputName" placeholder="Your name">
       <button class="startGameBtn" @click="startGame"> Start Game! </button>
-      <span v-if="$store.getters.isGameStarted">
-        {{ $store.getters.playerName }}
+      <span v-if="error">
+        {{ errorMessage }}
       </span>
     </div>
   </div>
@@ -15,14 +15,16 @@ export default {
   data() {
     return {
       userName: null,
+      error: false,
+      errorMessage: "Please tell us your name!"
     }
   },
   methods: {
     startGame() {
       if(this.userName !== '' || this.userName !== null) {
-        this.$store.commit('START_GAME', this.userName) 
+        this.$store.commit('START_GAME', this.userName);
       } else {
-        alert('Please enter your name!')
+        this.error = true;
       }
     }
   }
