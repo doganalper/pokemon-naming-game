@@ -1,11 +1,5 @@
 <template>
-  <div id="app" 
-    :style="{ 
-        backgroundImage: 'url(' + setImage + ')', 
-        backgroundRepeat: 'no-repeat', 
-        backgroundAttachment: 'fixed', 
-        backgroundPosition: 'center'}"
-  >
+  <div class="app" :style="{ backgroundImage: 'url(' + setImage + ')', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed', backgroundPosition: 'center'}">
     <router-view />
   </div>
 </template>
@@ -14,7 +8,7 @@
 export default {
   data() {
     return {
-      bgBaseUrl: '../background-pics/',
+      bgBaseUrl: './background-pics/',
       bgImages: [
         'bg1.jpg',
         'bg2.jpg',
@@ -29,8 +23,10 @@ export default {
       this.setImage = this.bgBaseUrl + this.bgImages[Math.floor(Math.random() * this.bgImages.length)];
     }
   },
-  mounted() {
+  beforeMount(){
     this.setBgImage();
+  },
+  mounted() {
     this.$store.commit('CLEAR_GAME');
   }
 }
@@ -46,7 +42,7 @@ export default {
   font-family: "Pokemon";
 }
 
-#app{
+.app{
   width: 100%;
   height: 948px;
   display: flex;
