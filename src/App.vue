@@ -1,34 +1,18 @@
 <template>
-  <div class="app" :style="{ backgroundImage: 'url(' + setImage + ')', backgroundRepeat: 'no-repeat', backgroundAttachment: 'fixed', backgroundPosition: 'center'}">
-    <router-view />
+  <div class="app">
+    <GameStart v-if="$store.getters.isGameStarted" />
+    <GameMain v-else />
   </div>
 </template>
 
 <script>
+import GameStart from './views/GameStart';
+import GameMain from './views/GameMain';
 export default {
-  data() {
-    return {
-      bgBaseUrl: './background-pics/',
-      bgImages: [
-        'bg1.jpg',
-        'bg2.jpg',
-        'bg3.jpg',
-        'bg4.jpg',
-      ],
-      setImage: null,
+    components: {
+        GameStart,
+        GameMain,
     }
-  },
-  methods: {
-    setBgImage() {
-      this.setImage = this.bgBaseUrl + this.bgImages[Math.floor(Math.random() * this.bgImages.length)];
-    }
-  },
-  beforeMount(){
-    this.setBgImage();
-  },
-  mounted() {
-    this.$store.commit('CLEAR_GAME');
-  }
 }
 </script>
 
@@ -48,5 +32,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('../public/background-pics/bg4.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 </style>
