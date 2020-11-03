@@ -1,6 +1,6 @@
 <template>
   <div class="gameMain">
-    <div class="playerInfoSect">
+    <div class="playerInfoSect" v-if="isCleared">
       <input
         type="text"
         v-model="userName"
@@ -22,6 +22,7 @@ export default {
       userName: null,
       error: false,
       errorMessage: "Please tell us your name!",
+      isCleared: false,
     };
   },
   methods: {
@@ -33,7 +34,16 @@ export default {
         this.error = true;
       }
     },
+    clearPickedPokemons() {
+      this.$axios.get("/clear-pokemons")
+        .then(() => {
+          this.isCleared = true;
+        })
+    }
   },
+  mounted() {
+    this.clearPickedPokemons();
+  }
 };
 </script>
 
