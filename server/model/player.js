@@ -9,13 +9,15 @@ class Player {
     saveUser() {
         const db = getDb();
 
-        db.collection('users')
-            .insertOne(this)
-                .then(result => {
-                    console.log(result);
-                }).catch((err) => {
-                    console.log(err);
-                });
+        return new Promise((resolve, reject) => {
+            db.collection('users').insertOne(this, (err, res) => {
+                if (!err) {
+                    resolve(res);
+                } else {
+                    reject(err);
+                }
+            })
+        })
     }
 }
 

@@ -1,8 +1,13 @@
 <template>
   <div class="gameMain">
     <div class="playerInfoSect">
-      <input type="text" v-model="userName" class="inputName" placeholder="Your name">
-      <button class="startGameBtn" @click="startGame"> Start Game! </button>
+      <input
+        type="text"
+        v-model="userName"
+        class="inputName"
+        placeholder="Your name"
+      />
+      <button class="startGameBtn" @click="startGame">Start Game!</button>
       <span v-show="error">
         {{ errorMessage }}
       </span>
@@ -16,21 +21,20 @@ export default {
     return {
       userName: null,
       error: false,
-      errorMessage: "Please tell us your name!"
-    }
+      errorMessage: "Please tell us your name!",
+    };
   },
   methods: {
     startGame() {
       this.error = false;
-      if(this.userName !== '' && this.userName !== null) {
-        this.$store.commit('START_GAME', this.userName);
-        this.$router.push('/game-start')
+      if (this.userName !== "" && this.userName !== null) {
+        this.$store.commit("START_GAME", this.userName);
       } else {
         this.error = true;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -39,7 +43,7 @@ export default {
   }
 
   .playerInfoSect{
-    display:flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
   }
@@ -48,7 +52,7 @@ export default {
     background-color: #e9c837;
     border-radius: 15px;
     width: 300px;
-    border:1px solid black;
+    border: 1px solid black;
     padding: 10px;
     margin-bottom: 15px;
   }
