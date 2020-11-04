@@ -1,17 +1,20 @@
 <template>
   <div v-if="pokemon">
-      {{ $store.getters.playerName }}
-      <img v-if="pokemon" :src="pokemon.sprites['front_default']" :alt="pokemon.name">
-      <button @click="getRandomPokemon"> Pick new Pokemon! </button>
+      <PokedexGuess :pokemon="pokemon" :is-loading="isLoading"/>
   </div>
 </template>
 
 <script>
+import PokedexGuess from '@/components/PokedexGuess';
 export default {
     data() {
         return {
             pokemon: null,
+            isLoading: true,
         }
+    },
+    components: {
+        PokedexGuess,
     },
     methods: {
         getRandomPokemon() {
@@ -21,7 +24,10 @@ export default {
                     console.log(pokemon.data);
                 }).catch((err) => {
                     console.log(err);
-                });
+                })
+                .finally(() => {
+                    this.isLoading = false;
+                })
         }
     },
     mounted() {
