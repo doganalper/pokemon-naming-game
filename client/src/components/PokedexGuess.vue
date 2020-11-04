@@ -48,7 +48,7 @@ export default {
             setInterval(()=> {
                 this.isFront = !this.isFront;
             },1500)
-        }
+        },
     },
     watch: {
         isFront(val) {
