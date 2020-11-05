@@ -14,7 +14,9 @@
       <div class="downPart display-row-center">
           <input type="text" v-model="guessedName" class="guessInput">
           <div class="downButtons">
-              <button class="guessButton">Guess!</button>
+              <button class="guessButton" @click="activityBtnClicked">
+                {{ guessedRight ? 'Catch New Pokemon!' : 'Guess!' }}
+              </button>
               <button class="detailButton" :style= "[!guessedRight ? {'backgroundColor':'#ACACAC'} : {'backgroundColor':'#EB793D'}]"> > </button>
           </div>
       </div>
@@ -39,7 +41,7 @@ export default {
         return {
             pokemonPhoto: null,
             isFront: false,
-            guessedName: '',
+            guessedName: null,
             guessedRight: false,
         }
     },
@@ -49,6 +51,24 @@ export default {
                 this.isFront = !this.isFront;
             },1500)
         },
+        activityBtnClicked() {
+            if(this.guessedRight) {
+                this.pickNextPokemon();
+            } else {
+                this.guess();
+            }
+        },
+        guess() {
+            console.log("Guess Clicked");
+            if(this.guessedName === this.pokemon.name.replace(/^\w/, (c) => c.toUpperCase()) || this.guessedName === this.pokemon.name) {
+                this.guessedRight = true;
+                this.$store.commit('UPDATE_PLAYER_POINT', 100);
+            }
+        },
+        pickNextPokemon() {
+            this.$emit('newPokemon');
+            this.guessedRight = false;
+        }
     },
     watch: {
         isFront(val) {

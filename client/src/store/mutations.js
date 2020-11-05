@@ -11,4 +11,5 @@ export const START_GAME = (state, playerName) => {
 
 export const UPDATE_PLAYER_POINT = (state, addition) => {
     state.point += addition;
+    state.rightGuessCount += 1;
 }

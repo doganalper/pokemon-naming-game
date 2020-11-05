@@ -10,6 +10,7 @@ export default new Vuex.Store({
     isGameStarted: false,
     playerName: "Alper",
     point: 0,
+    rightGuessCount: 0,
   },
   getters,
   mutations,

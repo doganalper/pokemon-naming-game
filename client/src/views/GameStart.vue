@@ -1,6 +1,9 @@
 <template>
-  <div v-if="pokemon">
-      <PokedexGuess :pokemon="pokemon" :is-loading="isLoading"/>
+  <div>
+      <PokedexGuess 
+        :pokemon="pokemon" 
+        :is-loading="isLoading"
+        @newPokemon="getRandomPokemon"/>
   </div>
 </template>
 
