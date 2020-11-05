@@ -3,6 +3,9 @@
       <div class="topPart display-row-center">
           <div class="picturePart display-row-center">
               <img :src="pokemonPhoto" v-if="!isLoading">
+              <span v-if="isLoading" :style="showDots ? {display: inline} : {display:none}">
+                  Pokemon is loading...
+              </span>
           </div>
           <div class="screenButtonsPart">
               <div class="redDot"></div>
