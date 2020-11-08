@@ -30,7 +30,6 @@ export default {
             this.$axios.get("/get-random-pokemon")
                 .then((pokemon) => {
                     this.pokemon = pokemon.data;
-                    console.log(pokemon.data);
                 }).catch((err) => {
                     console.log(err);
                 })

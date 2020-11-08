@@ -65,7 +65,6 @@ export default {
             }
         },
         guess() {
-            console.log("Guess Clicked");
             if(this.guessedName === this.pokemon.name.replace(/^\w/, (c) => c.toUpperCase()) || this.guessedName === this.pokemon.name) {
                 this.guessedRight = true;
                 this.$store.commit('UPDATE_PLAYER_POINT', 100);
@@ -74,8 +73,6 @@ export default {
                     this.$store.commit('INCREASE_FAILS');
                 } else {
                     this.sendUserInfo();
-                    this.$store.commit('SET_FAILED');
-                    this.$store.commit('CLEAR_GAME');
                 }
             }
         },
@@ -87,10 +84,11 @@ export default {
                 }
             }
             this.$axios.post('http://localhost:3000/create-player', payload, headers)
-                .then(data => {
-                console.log(data);
+                .then(() => {
+                    this.$store.commit('SET_FAILED');
+                    this.$store.commit('CLEAR_GAME');
                 }).catch(err => {
-                console.log(err);
+                    console.log(err);
                 });
         },
         pickNextPokemon() {

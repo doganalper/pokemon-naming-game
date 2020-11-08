@@ -21,3 +21,5 @@ To start the project:
 ```
 
 For getting Pokemon informations, I have used PokeAPI which can be accessed from https://pokeapi.co/
+
+(This project is still in development. Player points will be displayed.)
