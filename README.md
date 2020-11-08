@@ -1,4 +1,4 @@
-Pokemon Naming Game with MEVN stack
+## Pokemon Naming Game with MEVN stack
 
 To start the project:
 
