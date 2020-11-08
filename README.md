@@ -1,24 +1,23 @@
-# pokemon-naming-game
+Pokemon Naming Game with MEVN stack
 
-## Project setup
-```
-npm install
-```
+To start the project:
 
-### Compiles and hot-reloads for development
+Go to client folder and start VueJs with:
+
 ```
-npm run serve
+    npm run serve
 ```
 
-### Compiles and minifies for production
+Go to server folder and start NodeJs with:
+
 ```
-npm run build
+    npm run start
 ```
 
-### Lints and fixes files
+And start MongoDB server with:
+
 ```
-npm run lint
+    mongod
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+For getting Pokemon informations, I have used PokeAPI which can be accessed from https://pokeapi.co/

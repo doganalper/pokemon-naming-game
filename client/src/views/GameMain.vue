@@ -1,6 +1,7 @@
 <template>
   <div class="gameMain">
     <div class="playerInfoSect" v-if="isCleared">
+      <span v-if="$store.getters.isFailed"> You have failed, please try again! </span>
       <input
         type="text"
         v-model="userName"
@@ -64,7 +65,7 @@ export default {
     width: 300px;
     border: 1px solid black;
     padding: 10px;
-    margin-bottom: 15px;
+    margin: 15px 0;
   }
   .inputName:focus{
     outline: none;

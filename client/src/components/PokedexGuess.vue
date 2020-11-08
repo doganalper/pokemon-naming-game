@@ -69,7 +69,29 @@ export default {
             if(this.guessedName === this.pokemon.name.replace(/^\w/, (c) => c.toUpperCase()) || this.guessedName === this.pokemon.name) {
                 this.guessedRight = true;
                 this.$store.commit('UPDATE_PLAYER_POINT', 100);
+            } else {
+                if( this.$store.getters.failsCount < 2 ) {
+                    this.$store.commit('INCREASE_FAILS');
+                } else {
+                    this.sendUserInfo();
+                    this.$store.commit('SET_FAILED');
+                    this.$store.commit('CLEAR_GAME');
+                }
             }
+        },
+        sendUserInfo() {
+            let payload = {'playerName': this.$store.getters.playerName,'finalPoint': this.$store.getters.point}
+            let headers = {
+                headers: {
+                'Content-Type': 'application/json',
+                }
+            }
+            this.$axios.post('http://localhost:3000/create-player', payload, headers)
+                .then(data => {
+                console.log(data);
+                }).catch(err => {
+                console.log(err);
+                });
         },
         pickNextPokemon() {
             this.$emit('newPokemon');

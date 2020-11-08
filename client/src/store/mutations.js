@@ -2,6 +2,7 @@ export const CLEAR_GAME = (state) => {
     state.isGameStarted = false;
     state.playerName = null;
     state.point = 0;
+    state.failsCount = 0;
 }
 
 export const START_GAME = (state, playerName) => {
@@ -25,3 +26,7 @@ export const SET_OPEN_DETAIL = (state, payload) => {
             break;
     }
 }
+
+export const INCREASE_FAILS = (state) => { state.failsCount++ }
+
+export const SET_FAILED = (state) => { state.isFailed = true }

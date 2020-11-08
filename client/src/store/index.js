@@ -12,6 +12,8 @@ export default new Vuex.Store({
     point: 0,
     rightGuessCount: 0,
     openDetail: false,
+    failsCount: 0,
+    isFailed: false,
   },
   getters,
   mutations,
