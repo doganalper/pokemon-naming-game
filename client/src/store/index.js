@@ -8,9 +8,10 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isGameStarted: false,
-    playerName: "Alper",
+    playerName: "",
     point: 0,
     rightGuessCount: 0,
+    openDetail: false,
   },
   getters,
   mutations,

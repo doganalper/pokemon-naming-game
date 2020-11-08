@@ -1,9 +1,12 @@
 <template>
-  <div class="pokedexBg display-row-center">
+  <div 
+    class="pokedexBg display-row-center" 
+    :style="$store.getters.openDetail ? {borderTopRightRadius: '0px', borderBottomRightRadius: '0px'} : {}"
+    >
       <div class="topPart display-row-center">
           <div class="picturePart display-row-center">
               <img :src="pokemonPhoto" v-if="!isLoading">
-              <span v-if="isLoading" :style="showDots ? {display: inline} : {display:none}">
+              <span v-if="isLoading" :style="isLoading ? {display: inline} : {display:none}">
                   Pokemon is loading...
               </span>
           </div>
@@ -20,7 +23,7 @@
               <button class="guessButton" @click="activityBtnClicked">
                 {{ guessedRight ? 'Catch New Pokemon!' : 'Guess!' }}
               </button>
-              <button class="detailButton" :style= "[!guessedRight ? {'backgroundColor':'#ACACAC'} : {'backgroundColor':'#EB793D'}]"> > </button>
+              <button class="detailButton" :style= "[!guessedRight ? {'backgroundColor':'#ACACAC'} : {'backgroundColor':'#EB793D'}]" @click="openDetail"> > </button>
           </div>
       </div>
   </div>
@@ -71,6 +74,10 @@ export default {
         pickNextPokemon() {
             this.$emit('newPokemon');
             this.guessedRight = false;
+            this.$store.commit('SET_OPEN_DETAIL','Close');
+        },
+        openDetail() {
+            this.$store.commit('SET_OPEN_DETAIL','Open');
         }
     },
     watch: {
