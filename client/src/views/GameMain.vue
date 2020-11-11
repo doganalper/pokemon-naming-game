@@ -31,6 +31,7 @@ export default {
       this.error = false;
       if (this.userName !== "" && this.userName !== null) {
         this.$store.commit("START_GAME", this.userName);
+        this.$router.push('/game');
       } else {
         this.error = true;
       }

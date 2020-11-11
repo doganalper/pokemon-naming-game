@@ -37,3 +37,14 @@ exports.clearPokemons = (req, res) => {
     pokemonFuncs.pickedPokemons = [];
     res.status(200).send({ picked_pokemons_length: pokemonFuncs.pickedPokemons.length });
 }
+
+exports.getTopPlayers = (req, res) => {
+    Player.getTopPlayers()
+        .then((data) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(data));
+        }).catch((err) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(err));
+        });
+}

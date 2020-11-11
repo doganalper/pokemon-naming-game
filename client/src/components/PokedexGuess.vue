@@ -73,6 +73,7 @@ export default {
                     this.$store.commit('INCREASE_FAILS');
                 } else {
                     this.sendUserInfo();
+                    this.$router.push('/');
                 }
             }
         },
