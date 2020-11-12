@@ -40,7 +40,7 @@ export default {
     },
     mounted() {
         this.getRandomPokemon()
-    }
+    },
 }
 </script>
 

@@ -1,10 +1,20 @@
 <template>
   <div class="headerPart">
-      <div v-if="$store.getters.playerName" class="playerInfo">
-          <span class="infoItem"> Player: {{ $store.getters.playerName }} </span>
-          <span class="infoItem"> Point: {{  $store.getters.point }} </span>
-          <span> Fails: {{ $store.getters.failsCount }}/3 </span>
+      <div class="playerInfo">
+          <span v-if="$store.getters.playerName">
+            <span class="infoItem"> Player: {{ $store.getters.playerName }} </span>
+            <span class="infoItem"> Point: {{  $store.getters.point }} </span>
+            <span> Fails: {{ $store.getters.failsCount }}/3 </span>
+          </span>
       </div>
+    <div class="buttonPart">
+        <router-link tag="button" to="/score-board" v-if="$route.path === '/'">
+            Score Board
+        </router-link>
+        <router-link tag="button" to="/" v-if="$route.path === '/score-board'">
+            Main Page
+        </router-link>
+    </div>
   </div>
 </template>
 
@@ -24,7 +34,13 @@ export default {
     }
 
     .playerInfo {
+        width: 60%;
+    }
+
+    .buttonPart {
         width: 40%;
+        display: flex;
+        justify-content: flex-end;
     }
 
     .infoItem {

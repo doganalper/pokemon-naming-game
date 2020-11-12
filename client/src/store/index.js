@@ -5,7 +5,7 @@ import * as mutations from './mutations';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+let store =  new Vuex.Store({
   state: {
     isGameStarted: false,
     playerName: "",
@@ -19,3 +19,6 @@ export default new Vuex.Store({
   mutations,
   actions: {},
 });
+
+
+export default store;
