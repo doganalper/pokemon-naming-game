@@ -27,7 +27,7 @@ export default {
 }
 
 .mainScreen {
-  background-image: url('../public/background-pics/bg4.jpg');
+  background-image: url('../public/background-pics/bg2.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

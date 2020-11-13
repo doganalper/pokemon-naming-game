@@ -8,10 +8,10 @@
           </span>
       </div>
     <div class="buttonPart">
-        <router-link tag="button" to="/score-board" v-if="$route.path === '/'">
+        <router-link tag="button" to="/score-board" v-if="$route.path === '/'" class="headerButton">
             Score Board
         </router-link>
-        <router-link tag="button" to="/" v-if="$route.path === '/score-board'">
+        <router-link tag="button" to="/" v-if="$route.path === '/score-board'" class="headerButton">
             Main Page
         </router-link>
     </div>
@@ -45,5 +45,14 @@ export default {
 
     .infoItem {
         margin-right: 20px;
+    }
+
+    .headerButton {
+        background-color: #FFAC20;
+        border-radius: 5px;
+        border: none;
+        padding: 3px 15px;
+        box-sizing: border-box;
+        cursor: pointer;
     }
 </style>
