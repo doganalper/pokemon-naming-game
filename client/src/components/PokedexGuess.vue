@@ -1,31 +1,34 @@
 <template>
-  <div 
-    class="pokedexBg display-row-center" 
-    :style="$store.getters.openDetail ? {borderTopRightRadius: '0px', borderBottomRightRadius: '0px'} : {}"
-    >
-      <div class="topPart display-row-center">
-          <div class="picturePart display-row-center">
-              <img :src="pokemonPhoto" v-if="!isLoading">
-              <span v-if="isLoading" :style="isLoading ? {display: inline} : {display:none}">
-                  Pokemon is loading...
-              </span>
-          </div>
-          <div class="screenButtonsPart">
-              <div class="redDot"></div>
-              <div class="rowsContainer">
-                <div v-for="row in 3" :key="row" class="rows" />
-              </div>
-          </div>
-      </div>
-      <div class="downPart display-row-center">
-          <input type="text" v-model="guessedName" class="guessInput">
-          <div class="downButtons">
-              <button class="guessButton" @click="activityBtnClicked">
-                {{ guessedRight ? 'Catch New Pokemon!' : 'Guess!' }}
-              </button>
-              <button class="detailButton" :style= "[!guessedRight ? {'backgroundColor':'#ACACAC'} : {'backgroundColor':'#EB793D'}]" @click="openDetail"> > </button>
-          </div>
-      </div>
+  <div :style="$store.getters.openDetail ? {borderTopRightRadius: '0px', borderBottomRightRadius: '0px'} : {}">
+    <span class="topPlayersText" v-if="isSuggestion">Suggestion</span>
+    <div class="pokedexBg display-row-center" >
+        <div class="topPart display-row-center">
+            <div class="picturePart display-row-center">
+                <img :src="pokemonPhoto" v-if="!isLoading">
+                <span v-if="isLoading" :style="isLoading ? {display: inline} : {display:none}">
+                    Pokemon is loading...
+                </span>
+            </div>
+            <div class="screenButtonsPart">
+                <div class="redDot"></div>
+                <div class="rowsContainer">
+                    <div v-for="row in 3" :key="row" class="rows" />
+                </div>
+            </div>
+        </div>
+        <div class="downPart display-row-center" v-if="!isSuggestion">
+            <input type="text" v-model="guessedName" class="guessInput">
+            <div class="downButtons">
+                <button class="guessButton" @click="activityBtnClicked">
+                    {{ guessedRight ? 'Catch New Pokemon!' : 'Guess!' }}
+                </button>
+                <button class="detailButton" :style= "[!guessedRight ? {'backgroundColor':'#ACACAC'} : {'backgroundColor':'#EB793D'}]" @click="openDetail"> > </button>
+            </div>
+        </div>
+        <div class="downPart display-row-center" v-if="isSuggestion">
+            <input type="text" :value="pokemon.name.replace(/^\w/, (c) => c.toUpperCase())" class="guessInput" readonly>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -41,6 +44,10 @@ export default {
         isLoading: {
             type: Boolean,
             default: true
+        },
+        isSuggestion: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -73,7 +80,7 @@ export default {
                     this.$store.commit('INCREASE_FAILS');
                 } else {
                     this.sendUserInfo();
-                    this.$router.push('/');
+                    this.$router.push({name:'Score-Board', params: {isFromMainPage: true}});
                 }
             }
         },
@@ -93,6 +100,7 @@ export default {
                 });
         },
         pickNextPokemon() {
+            this.guessedName = ''
             this.$emit('newPokemon');
             this.guessedRight = false;
             this.$store.commit('SET_OPEN_DETAIL','Close');
@@ -204,5 +212,9 @@ export default {
     .detailButton {
         width: 79px;
         margin-left: 15px;
+    }
+
+    .topPlayersText {
+        font-size: 20px;
     }
 </style>
