@@ -8,7 +8,7 @@
           </span>
       </div>
     <div class="buttonPart">
-        <router-link tag="button" to="/score-board" v-if="$route.path === '/'" class="headerButton">
+        <router-link tag="button" :to="{ name: 'Score-Board', params: { isFromMainPage: false }}" v-if="$route.path === '/'" class="headerButton">
             Score Board
         </router-link>
         <router-link tag="button" to="/" v-if="$route.path === '/score-board'" class="headerButton">

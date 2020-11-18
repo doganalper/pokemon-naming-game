@@ -13,7 +13,8 @@ app.post('/create-player', controllers.createPlayer);
 app.get('/get-random-pokemon', controllers.getRandomPokemon);
 app.get('/correct-guess/:id', controllers.pokemonGuessedRight);
 app.get('/clear-pokemons', controllers.clearPokemons);
-app.get('/get-top-players', controllers.getTopPlayers)
+app.get('/get-top-players', controllers.getTopPlayers);
+app.get('/my-sorting', controllers.getSorting)
 
 mongoConnect(client => {
     app.listen(3000);

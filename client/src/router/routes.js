@@ -4,7 +4,8 @@ const routes = [
     {
         path: '/score-board',
         component: () => import('../views/ScoreBoard.vue'),
-        name: 'Score-Board'
+        name: 'Score-Board',
+        props: true
     },
     {
         path: '/game',

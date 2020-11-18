@@ -48,3 +48,14 @@ exports.getTopPlayers = (req, res) => {
             res.end(JSON.stringify(err));
         });
 }
+
+exports.getSorting = (req, res) => {
+    Player.getSorting()
+        .then((result) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(result));
+        }).catch((err) => {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(err));
+        });
+}
